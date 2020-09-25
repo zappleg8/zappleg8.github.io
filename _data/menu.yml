@@ -1,37 +1,18 @@
-# For documentation on this file, see:
-# https://github.com/riggraz/no-style-please#customize-the-menu
-
 entries:
-  - title: info
+  - title: Zach Applegate
     url: false
     entries:
-      - title: a (nearly) no-CSS, fast, minimalist Jekyll theme.
+      - title: focused on value innovation in finance; commercial real estate; import/export; mycology; crypto
         url: false
-      - title: github
-        url: https://github.com/riggraz/no-style-please
-      - title: used by riggraz.dev
-        url: https://riggraz.dev/
-
-  - title: thoughts
-    post_list: true
-    url: false
-    entries: false
-
-  - title: rss
-    url: feed.xml
-  
-  - title: another list
-    url: false
-    entries:
-      - title: with subitems
-        url: false
-        entries:
-          - title: with subsubitems
-            url: false
-          - title: example page
-            url: about
-  - title: PRO TIP
-    url: false
-    entries:
-      - title: to edit this menu, edit _data/menu.yml file
-        url: false
+      - title: zach@zachapplegate.com
+        url: mailto:zach@zachapplegate.com              
+      - title: LinkedIn
+        url: https://linkedin.com/in/zachapplegate
+      - title: GitHub
+        url: https://github.com/zappleg8
+      - title: Twitter
+        url: https://twitter.com/zap___official
+      - title: Medium
+        url: https://medium.com/@zapplegate
+      - title: Instagram
+        url: https://instagram.com/zachapplegate
