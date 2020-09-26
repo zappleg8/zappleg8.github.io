@@ -2,8 +2,11 @@ entries:
   - title: contact
     url: false
     entries:
-      - title: value innovation: finance|commercial real estate|import/export|blockchain
+      - title: value innovation
         url: false
+        entries:
+          - title: finance commercial real estate import/export blockchain
+            url: false
       - title: zach@zachapplegate.com
         url: mailto:zach@zachapplegate.com              
       - title: linkedin.com/in/zachapplegate
