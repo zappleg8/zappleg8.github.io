@@ -52,6 +52,16 @@ const ogImageUrl = new URL(ogImage, Astro.site);
         }
       })();
     </script>
+    {
+      SITE.goatCounter && import.meta.env.PROD && (
+        <script
+          is:inline
+          data-goatcounter={`https://${SITE.goatCounter}.goatcounter.com/count`}
+          async
+          src="//gc.zgo.at/count.js"
+        />
+      )
+    }
   </head>
   <body>
     <Nav />

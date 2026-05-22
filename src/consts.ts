@@ -3,6 +3,9 @@ export const SITE = {
   description:
     'Zach Applegate builds production AI agents and writes about agentic system design.',
   url: 'https://zachapplegate.com',
+  // TODO(Zach): create a free GoatCounter site and put its code here
+  // (e.g. 'zachapplegate'). Leave '' to disable analytics.
+  goatCounter: '',
 };
 
 export const LINKS = {
