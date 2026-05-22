@@ -1,0 +1,50 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  article: CollectionEntry<'writing'>;
+}
+const { article } = Astro.props;
+const { title, description, date } = article.data;
+const dateLabel = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+});
+---
+
+<a href={`/writing/${article.id}`} class="card">
+  <span class="card-date">{dateLabel}</span>
+  <span class="card-title">{title}</span>
+  <span class="card-desc">{description}</span>
+</a>
+
+<style>
+  .card {
+    display: block;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .card-date {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .card-title {
+    display: block;
+    color: var(--text-primary);
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 6px;
+  }
+  .card:hover .card-title {
+    color: var(--accent);
+  }
+  .card-desc {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+</style>

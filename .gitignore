@@ -1,6 +1,7 @@
-*.gem
-.bundle
-.jekyll-cache
-.sass-cache
-_site
-Gemfile.lock
+node_modules/
+dist/
+.astro/
+.superpowers/
+.DS_Store
+npm-debug.log*
+.gstack/

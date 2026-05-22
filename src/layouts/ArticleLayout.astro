@@ -1,0 +1,182 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  article: CollectionEntry<'writing'>;
+}
+const { article } = Astro.props;
+const { title, subtitle, kicker, date, description, heroImage, xUrl } =
+  article.data;
+const dateLabel = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+});
+---
+
+<BaseLayout title={`${title} — Zach Applegate`} description={description} ogImage={heroImage}>
+  <article class="article container">
+    {heroImage && <img class="hero-img" src={heroImage} alt="" />}
+    <p class="kicker">{kicker}</p>
+    <h1 class="title">{title}</h1>
+    <p class="subtitle">{subtitle}</p>
+    <p class="meta">Zach Applegate &middot; {dateLabel}</p>
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    <div class="end">
+      <a href="/writing" class="end-back">&larr; All writing</a>
+      {
+        xUrl && (
+          <span class="end-x">
+            A shorter version ran on <a href={xUrl}>X &#8599;</a>
+          </span>
+        )
+      }
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article {
+    padding-block: 56px 40px;
+    max-width: 640px;
+  }
+  .hero-img {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .title {
+    font-size: clamp(28px, 6vw, 38px);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.12;
+    margin-top: 12px;
+  }
+  .subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-top: 14px;
+  }
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 18px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* prose — styles the rendered Markdown */
+  .prose :global(p) {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-body);
+    margin-top: 20px;
+  }
+  .prose :global(h2) {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-top: 42px;
+  }
+  .prose :global(h3) {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 32px;
+  }
+  .prose :global(a) {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-underline);
+  }
+  .prose :global(blockquote) {
+    margin: 34px 0;
+    padding-left: 20px;
+    border-left: 2px solid var(--accent);
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+  .prose :global(blockquote p) {
+    font-size: inherit;
+    color: inherit;
+    margin: 0;
+  }
+  .prose :global(img) {
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-top: 32px;
+  }
+  .prose :global(figure) {
+    margin: 32px 0 0;
+  }
+  .prose :global(figure img) {
+    margin-top: 0;
+  }
+  .prose :global(figcaption) {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    margin-top: 10px;
+  }
+  .prose :global(:not(pre) > code) {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: 4px;
+    padding: 1px 5px;
+  }
+  .prose :global(.expressive-code) {
+    margin-top: 28px;
+  }
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--border-subtle);
+    margin: 40px 0;
+  }
+
+  .end {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 44px;
+    padding-top: 26px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .end-back {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+  .end-x {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .end-x a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

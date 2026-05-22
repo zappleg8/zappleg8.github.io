@@ -1,0 +1,69 @@
+---
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+const thumb = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+---
+
+<div class="yt" data-id={id}>
+  <button class="yt-btn" type="button" aria-label={`Play video: ${title}`}>
+    <img src={thumb} alt="" loading="lazy" width="1280" height="720" />
+    <span class="yt-play" aria-hidden="true">&#9654;</span>
+  </button>
+</div>
+
+<style>
+  .yt {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+  .yt-btn {
+    all: unset;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .yt img,
+  .yt :global(iframe) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+  }
+  .yt-play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    color: var(--accent);
+    font-size: 22px;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.yt').forEach((el) => {
+    const btn = el.querySelector('.yt-btn');
+    btn?.addEventListener('click', () => {
+      const id = (el as HTMLElement).dataset.id;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1`;
+      iframe.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      el.replaceChildren(iframe);
+    });
+  });
+</script>
