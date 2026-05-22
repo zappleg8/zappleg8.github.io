@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import ThemeToggle from './ThemeToggle.astro';
+
+const published = await getCollection('writing', ({ data }) => !data.draft);
+const hasWriting = published.length > 0;
+const path = Astro.url.pathname;
+---
+
+<nav class="nav">
+  <div class="nav-inner container">
+    <a href="/" class="wordmark">Zach Applegate</a>
+    <div class="nav-right">
+      {
+        hasWriting && (
+          <a
+            href="/writing"
+            class:list={['nav-link', { active: path.startsWith('/writing') }]}
+          >
+            Writing
+          </a>
+        )
+      }
+      <a
+        href="/about"
+        class:list={['nav-link', { active: path === '/about' }]}
+      >
+        About
+      </a>
+      <ThemeToggle />
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+    z-index: 10;
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    padding-block: 18px;
+  }
+  .wordmark {
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .nav-link {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--accent);
+  }
+</style>
