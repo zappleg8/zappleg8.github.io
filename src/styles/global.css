@@ -8,7 +8,7 @@
   --text-primary: #ececee;
   --text-body: #c2c2c8;
   --text-secondary: #8a8a8e;
-  --text-dim: #6a6a72;
+  --text-dim: #80808a;
   --accent: #a99cf2;
   --accent-underline: rgba(169, 156, 242, 0.38);
   --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
@@ -23,8 +23,8 @@
   --border-subtle: #ededed;
   --text-primary: #1d1d1f;
   --text-body: #38383a;
-  --text-secondary: #86868b;
-  --text-dim: #a0a0a5;
+  --text-secondary: #6e6e73;
+  --text-dim: #6f6f77;
   --accent: #6e5bd6;
   --accent-underline: rgba(110, 91, 214, 0.4);
   color-scheme: light;
