@@ -1,0 +1,6 @@
+{
+  "name": "zach-terminal",
+  "type": "dark",
+  "colors": { "editor.background": "#0A0A0B", "editor.foreground": "#E3E3E6" },
+  "tokenColors": []
+}
