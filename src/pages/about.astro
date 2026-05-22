@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
+---
+
+<BaseLayout
+  title="About — Zach Applegate"
+  description="About Zach Applegate — engineer building production AI agents."
+>
+  <section class="about container">
+    <h1>About</h1>
+    <div class="bio">
+      <p>
+        I'm an early engineer at a profitable small business in an old-school
+        industry. I build production AI agents — systems where the model does
+        the reasoning and the harness around it does everything else.
+      </p>
+      <p>
+        I write about agentic system design: the tools an agent reaches for,
+        the context it walks in with, and the iteration loops that let it
+        verify its own work.
+      </p>
+      <p>I also surf.</p>
+    </div>
+    <YouTubeEmbed id="D1HbkcQ8xfQ" title="Zach Applegate surfing" />
+  </section>
+</BaseLayout>
+
+<style>
+  .about {
+    padding-block: 80px;
+  }
+  .about h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .bio {
+    margin-block: 24px 36px;
+    max-width: 560px;
+  }
+  .bio p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-body);
+  }
+  .bio p + p {
+    margin-top: 16px;
+  }
+</style>
