@@ -1,6 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
 import { SITE } from '../consts';
+
+const articles = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const featured = articles[0];
 ---
 
 <BaseLayout title={SITE.name} description={SITE.description}>
@@ -11,6 +17,18 @@ import { SITE } from '../consts';
       An early engineer at a profitable small business, writing about agentic
       system design and the harnesses that make agents work.
     </p>
+
+    {
+      featured && (
+        <a href={`/writing/${featured.id}`} class="featured">
+          <span class="featured-label">Latest writing</span>
+          <span class="featured-title">
+            {featured.data.title}&nbsp;<span class="featured-arrow">&rarr;</span>
+          </span>
+          <span class="featured-desc">{featured.data.description}</span>
+        </a>
+      )
+    }
   </section>
 </BaseLayout>
 
@@ -37,5 +55,39 @@ import { SITE } from '../consts';
     max-width: 440px;
     margin-top: 14px;
     line-height: 1.65;
+  }
+  .featured {
+    display: block;
+    margin-top: 64px;
+    padding-top: 26px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .featured-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .featured-title {
+    display: block;
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+  }
+  .featured-arrow {
+    color: var(--accent);
+  }
+  .featured:hover .featured-title {
+    color: var(--accent);
+  }
+  .featured-desc {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-top: 4px;
   }
 </style>
