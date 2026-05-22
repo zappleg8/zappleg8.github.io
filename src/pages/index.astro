@@ -4,8 +4,38 @@ import { SITE } from '../consts';
 ---
 
 <BaseLayout title={SITE.name} description={SITE.description}>
-  <section class="container" style="padding-block: 120px;">
-    <h1>Shell test</h1>
-    <p>Nav, footer, and theme toggle should be visible and working.</p>
+  <section class="hero container">
+    <h1 class="name">Zach Applegate</h1>
+    <p class="statement">I build production AI agents.</p>
+    <p class="context">
+      An early engineer at a profitable small business, writing about agentic
+      system design and the harnesses that make agents work.
+    </p>
   </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    padding-block: 140px 100px;
+  }
+  .name {
+    font-size: clamp(40px, 8vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+  }
+  .statement {
+    font-size: clamp(20px, 4vw, 24px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-top: 18px;
+  }
+  .context {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 440px;
+    margin-top: 14px;
+    line-height: 1.65;
+  }
+</style>
