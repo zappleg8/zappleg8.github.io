@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const articles = (await getCollection('writing', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Writing — Zach Applegate"
+  description="Essays on agentic system design and the harnesses that make agents work."
+>
+  <section class="writing container">
+    <h1>Writing</h1>
+    <div class="list">
+      {articles.map((article) => <ArticleCard article={article} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .writing {
+    padding-block: 80px;
+  }
+  .writing h1 {
+    font-size: 32px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .list {
+    margin-top: 18px;
+  }
+</style>
