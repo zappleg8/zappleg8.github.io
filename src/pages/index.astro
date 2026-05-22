@@ -1,13 +1,11 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Zach Applegate</title>
-  </head>
-  <body>
-    <main><p>Site rebuild in progress.</p></main>
-  </body>
-</html>
+
+<BaseLayout title={SITE.name} description={SITE.description}>
+  <section class="container" style="padding-block: 120px;">
+    <h1>Shell test</h1>
+    <p>Nav, footer, and theme toggle should be visible and working.</p>
+  </section>
+</BaseLayout>
