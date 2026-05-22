@@ -1,0 +1,51 @@
+<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle color theme">
+  <span class="t-icon" aria-hidden="true">&#9790;</span>
+</button>
+
+<style>
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-elevated);
+    color: var(--accent);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+  }
+  .theme-toggle:hover {
+    border-color: var(--accent);
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('theme-toggle');
+  const icon = btn?.querySelector('.t-icon');
+  const SUN = '☀︎';
+  const MOON = '☾';
+
+  function paint() {
+    if (!icon) return;
+    const isDark = document.documentElement.dataset.theme !== 'light';
+    icon.textContent = isDark ? MOON : SUN;
+  }
+
+  paint();
+
+  btn?.addEventListener('click', () => {
+    const next =
+      document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* localStorage unavailable; theme still applies for this page */
+    }
+    paint();
+  });
+</script>
