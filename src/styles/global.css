@@ -11,6 +11,12 @@
   --text-dim: #80808a;
   --accent: #a99cf2;
   --accent-underline: rgba(169, 156, 242, 0.38);
+  --pill-place-bg: rgba(169, 156, 242, 0.15);
+  --pill-place-fg: #c5bbf6;
+  --pill-org-bg: rgba(224, 175, 104, 0.15);
+  --pill-org-fg: #ecc79a;
+  --pill-field-bg: rgba(158, 206, 106, 0.15);
+  --pill-field-fg: #bde194;
   --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', monospace;
   color-scheme: dark;
@@ -27,6 +33,12 @@
   --text-dim: #6f6f77;
   --accent: #6e5bd6;
   --accent-underline: rgba(110, 91, 214, 0.4);
+  --pill-place-bg: rgba(110, 91, 214, 0.13);
+  --pill-place-fg: #4e3fa8;
+  --pill-org-bg: rgba(180, 110, 30, 0.14);
+  --pill-org-fg: #804500;
+  --pill-field-bg: rgba(80, 130, 30, 0.14);
+  --pill-field-fg: #3a5a10;
   color-scheme: light;
 }
 
@@ -94,4 +106,24 @@ img {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-dim);
+}
+
+.pill {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-size: inherit;
+  line-height: 1.4;
+}
+.pill-place {
+  background: var(--pill-place-bg);
+  color: var(--pill-place-fg);
+}
+.pill-org {
+  background: var(--pill-org-bg);
+  color: var(--pill-org-fg);
+}
+.pill-field {
+  background: var(--pill-field-bg);
+  color: var(--pill-field-fg);
 }
