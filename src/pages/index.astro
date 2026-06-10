@@ -1,40 +1,34 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getCollection } from 'astro:content';
-import { SITE } from '../consts';
-
-const articles = (await getCollection('writing', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
-const featured = articles[0];
+import YouTubeEmbed from '../components/YouTubeEmbed.astro';
+import { SITE, LINKS } from '../consts';
 ---
 
 <BaseLayout title={SITE.name} description={SITE.description}>
-  <section class="hero container">
-    <h1 class="name">Zach Applegate</h1>
-    <p class="statement">I build production AI agents.</p>
-    <p class="context">
-      An early engineer at a profitable small business, writing about agentic
-      system design and the harnesses that make agents work.
-    </p>
+  <section class="home container">
+    <div class="hero">
+      <h1 class="name">Zach Applegate</h1>
+      <p class="tagline">building agent harnesses in unsexy industries</p>
+      <p class="location">based in Los Angeles</p>
+    </div>
 
-    {
-      featured && (
-        <a href={`/writing/${featured.id}`} class="featured">
-          <span class="featured-label">Latest writing</span>
-          <span class="featured-title">
-            {featured.data.title}&nbsp;<span class="featured-arrow">&rarr;</span>
-          </span>
-          <span class="featured-desc">{featured.data.description}</span>
-        </a>
-      )
-    }
+    <div class="surf">
+      <span class="surf-label">surfing</span>
+      <YouTubeEmbed id="D1HbkcQ8xfQ" title="Zach Applegate surfing" />
+    </div>
+
+    <p class="contact">
+      <a href={LINKS.email}>email</a> or <a href={LINKS.x}>dm</a> to chat
+    </p>
   </section>
 </BaseLayout>
 
 <style>
-  .hero {
-    padding-block: 140px 100px;
+  .home {
+    padding-block: 110px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
   }
   .name {
     font-size: clamp(40px, 8vw, 52px);
@@ -42,52 +36,33 @@ const featured = articles[0];
     letter-spacing: -0.035em;
     line-height: 1.04;
   }
-  .statement {
+  .tagline {
     font-size: clamp(20px, 4vw, 24px);
     font-weight: 500;
     letter-spacing: -0.02em;
     color: var(--text-primary);
     margin-top: 18px;
   }
-  .context {
+  .location {
     font-size: 15px;
     color: var(--text-secondary);
-    max-width: 440px;
-    margin-top: 14px;
-    line-height: 1.65;
+    margin-top: 12px;
   }
-  .featured {
-    display: block;
-    margin-top: 64px;
-    padding-top: 26px;
-    border-top: 1px solid var(--border-subtle);
-  }
-  .featured-label {
+  .surf-label {
     display: block;
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--text-dim);
+    margin-bottom: 14px;
   }
-  .featured-title {
-    display: block;
-    color: var(--text-primary);
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin-top: 8px;
-  }
-  .featured-arrow {
-    color: var(--accent);
-  }
-  .featured:hover .featured-title {
-    color: var(--accent);
-  }
-  .featured-desc {
-    display: block;
+  .contact {
+    font-size: 16px;
     color: var(--text-secondary);
-    font-size: 14px;
-    margin-top: 4px;
+  }
+  .contact a {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-underline);
   }
 </style>
